@@ -41,13 +41,36 @@ class RobokassaredirectModuleFrontController extends ModuleFrontController
 		if ($postvalidate = Configuration::get('robokassa_postvalidate')) {
             $order_number = $my_cart->id;
         } else {
-			if (!($order_number = Order::getOrderByCartId($my_cart->id)))
-			{
-				$this->module->validateOrder((int)$my_cart->id, Configuration::get('PL_OS_WAITPAYMENT'), $my_cart->getOrderTotal(true, Cart::BOTH),
-					$this->module->displayName, null, array(), null, false, $my_cart->secure_key);
-				$order_number = $this->module->currentOrder;
-			}
-		}
+            if (!($order_number = Order::getOrderByCartId($my_cart->id))) {
+                $order_status = Configuration::get('PL_OS_WAITPAYMENT');
+
+                if (!$order_status || !OrderState::existsInDatabase($order_status, 'order_state')) {
+                    $orderState = new OrderState();
+                    $orderState->name = array((int)Configuration::get('PS_LANG_DEFAULT') => 'Ожидание оплаты');
+
+
+                    if ($orderState->add()) {
+                        Configuration::updateValue('PL_OS_WAITPAYMENT', $orderState->id);
+                        $order_status = $orderState->id;
+                    } else {
+                        die('Ошибка: Не удалось создать статус заказа.');
+                    }
+                }
+
+                $this->module->validateOrder(
+                    (int)$my_cart->id,
+                    $order_status,
+                    $my_cart->getOrderTotal(true, Cart::BOTH),
+                    $this->module->displayName,
+                    null,
+                    array(),
+                    null,
+                    false,
+                    $my_cart->secure_key
+                );
+                $order_number = $this->module->currentOrder;
+            }
+        }
 
         $receiptData = $this->getReceiptData($my_cart);
         $redirect_url = $this->getRedirectUrl();
