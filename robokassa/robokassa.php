@@ -37,13 +37,17 @@ class Robokassa extends PaymentModule
     );
 
     public static $tax = array(
-        1 => array('id' => 'none', 'name' => 'Без НДС'),
-        2 => array('id' => 'vat0', 'name' => 'НДС по ставке 0%'),
-        3 => array('id' => 'vat10', 'name' => 'НДС чека по ставке 10%'),
-        4 => array('id' => 'vat110', 'name' => 'НДС чека по расчетной ставке 10/110'),
-        5 => array('id' => 'vat20', 'name' => 'НДС чека по ставке 20%'),
-        6 => array('id' => 'vat120', 'name' => 'НДС чека по расчетной ставке 20/120'),
-    );
+    1 => array('id' => 'none', 'name' => 'Без НДС'),
+    2 => array('id' => 'vat0', 'name' => 'НДС по ставке 0%'),
+    3 => array('id' => 'vat10', 'name' => 'НДС чека по ставке 10%'),
+    4 => array('id' => 'vat110', 'name' => 'НДС чека по расчетной ставке 10/110'),
+    5 => array('id' => 'vat20', 'name' => 'НДС чека по ставке 20%'),
+    6 => array('id' => 'vat120', 'name' => 'НДС чека по расчетной ставке 20/120'),
+    7 => array('id' => 'vat5', 'name' => 'НДС по ставке 5%'),
+    8 => array('id' => 'vat105', 'name' => 'НДС чека по расчетной ставке 5/105'),
+    9 => array('id' => 'vat7', 'name' => 'НДС по ставке 7%'),
+    10 => array('id' => 'vat107', 'name' => 'НДС чека по расчетной ставке 7/107'),
+);
 
     public static $country = array(
         1 => array('id' => 'RU', 'name' => 'Россия'),
