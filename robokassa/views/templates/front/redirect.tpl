@@ -14,7 +14,7 @@
 			<input type="hidden" name="SignatureValue" value="{$signature|escape:'html':'UTF-8'}"/>
 			<input type="hidden" name="Email" value="{$email|escape:'html':'UTF-8'}"/>
 			{if $robokassa_demo}<input type="hidden" name="IsTest" value="1"/>{/if}
-			{if $OutSumCurrency}<input type="hidden" name="OutSumCurrency" value="{$OutSumCurrency|escape:'html':'UTF-8'}"/>{/if}
+{*			{if $OutSumCurrency}<input type="hidden" name="OutSumCurrency" value="{$OutSumCurrency|escape:'html':'UTF-8'}"/>{/if}*}
 			<input type="submit" value="{l s='Click here to go to the payment' mod='robokassa'}"/>
 		</form>
 		<script>document.robokassa_form.submit();</script>
