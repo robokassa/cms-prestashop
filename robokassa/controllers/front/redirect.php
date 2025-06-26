@@ -87,7 +87,7 @@ class RobokassaredirectModuleFrontController extends ModuleFrontController
             'redirect_url' => $redirect_url,
 			'email' => $customer->email,
             'receiptData' => urlencode(json_encode($receiptData)),
-			'OutSumCurrency' => ($currency->iso_code == 'RUB' ? false : $currency->iso_code),
+//			'OutSumCurrency' => ($currency->iso_code == 'RUB' ? false : $currency->iso_code),
 			'postvalidate' => $postvalidate,
 			'order_number' => $order_number,
 			'total_to_pay' => $total_to_pay,
